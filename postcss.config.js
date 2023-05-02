@@ -5,6 +5,10 @@ module.exports = {
             unitPrecision: 6,
             unitToConvert: 'px',
             propList: ['*'],
+            mediaQuery: false,
+            landscape: true,
+            landscapeUnit: 'vw',
+            landscapeWidth: 1024
         }
     }
 }

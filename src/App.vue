@@ -38,5 +38,11 @@ body {
   transition: background-color .25s, color .25s;
   color: var(--color-text);
   background-color: var(--color-body);
+  display: flex;
+  justify-content: center; /* 水平居中 */
+}
+
+#app-content {
+  width: 375px;
 }
 </style>
