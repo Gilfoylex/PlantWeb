@@ -1,4 +1,17 @@
 <template>
+    <var-swipe class="swipe-example">
+        <var-swipe-item v-for="item in images">
+            <img class="swipe-example-image" :src="item">
+        </var-swipe-item>
+    </var-swipe>
+    <var-row>
+        <var-col :span="8" offset="8">
+            <var-button class="preview-btn" @click="show = true">
+                查看大图
+            </var-button>
+        </var-col>
+    </var-row>
+    <var-image-preview closeable :images="bigImages" v-model:show="show" />
     <var-row v-for="item in plantInfo" :key="item.name">
         <var-col span='8'>
             <div class="item-name">{{ item.name }}</div>
@@ -32,6 +45,21 @@ onMounted(() => {
             plantInfoData.value = {};
         });
 })
+
+const show = ref(false)
+const images = ref([
+    `/api/image/${route.params.id}-1.png?height=400`,
+    `/api/image/${route.params.id}-2.png?height=400`,
+    `/api/image/${route.params.id}-3.png?height=400`,
+    `/api/image/${route.params.id}-4.png?height=400`,
+])
+
+const bigImages = ref([
+    `/api/image/${route.params.id}-1.png?height=800`,
+    `/api/image/${route.params.id}-2.png?height=800`,
+    `/api/image/${route.params.id}-3.png?height=800`,
+    `/api/image/${route.params.id}-4.png?height=800`,
+])
 
 const plantInfo = computed(() => {
     if (!plantInfoData.value) {
@@ -82,6 +110,21 @@ const plantInfo = computed(() => {
 </script>
 
 <style scoped>
+.swipe-example {
+    height: 400px;
+}
+
+.swipe-example-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.preview-btn {
+    margin: 10px;
+}
+
 .var-col {
     justify-content: start;
     align-items: center;
